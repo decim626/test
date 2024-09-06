@@ -6,6 +6,6 @@ return [
         "password" => "",
         "connection" => "mysql:host=localhost",
         "charset" => "utf8"
-    ],
+                ],
 
 ];
