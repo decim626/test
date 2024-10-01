@@ -30,9 +30,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
-                >Главная</a
-              >
+              <a class="nav-link active" aria-current="page" href="index.html">
+                Главная
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
@@ -91,9 +91,9 @@
               <?php foreach($posts as $post):?>
                 <tr>
                 <th scope="row"><?php echo $post['id'];?></th>
-                <td><?php echo $post['title'];?></td>
+                <td><a href ="/show.php?id=<?php echo $post['id'];?>"><?php echo $post['title'];?></a></td>
                 <td>
-                  <a href="#" class="btn btn-warning">Edit</a>
+                  <a href="/edit.php?id=<?php echo $post['id'];?>" class="btn btn-warning">Edit</a>
                   <a href="#" class="btn btn-danger">Delete</a>
                 </td>
               </tr>

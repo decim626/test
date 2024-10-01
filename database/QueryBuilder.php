@@ -7,15 +7,34 @@ class QueryBuilder {
     $this->pdo =$pdo;
    }
 
-    function getAll(){
-
-        //2. Выполнить запрос 
-        $sql = 'SELECT * FROM posts';
+  public function getAll($table)
+     {
+        $sql = "SELECT * FROM {$table}";
         $statement = $this->pdo->prepare($sql);
         $statement->execute();
       
-        //3. Получить ассоциативный массив в переменную $posts
-        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $posts;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+       
       }
-}
+  public function create($table, $data)
+  {
+        $keys = implode(',',array_keys($data));
+        $tags = ":".implode(',:',array_keys($data));
+
+        $sql ="INSERT INTO {$table} ({$keys})  
+        VALUES ({$tags})";
+        $statement= $this->pdo->prepare($sql);
+        $statement->execute($data);  
+
+  }
+ public function getOne($table, $id)
+   {
+    $sql = "SELECT * FROM posts WHERE id=:id";
+    $statement = $this->pdo->prepare($sql);
+    $statement->bindValue(':id', $id);
+    $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    return $result;
+    } 
+
+  }
